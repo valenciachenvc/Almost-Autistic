@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiple Fishes with Different Animation Durations</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            position: relative;
+            height: 100vh;
+            background-image: url('homepage_bg.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            position: relative;
+            height: 100vh;
+            width: 50%; /* Make the two containers side by side */
+            float: left;
+        }
+
+        .fish {
+            position: absolute;
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            transition: top 0.5s ease;
+        }
+
+        @keyframes moveSideways {
+            0% {
+                left: -150%; /* Start off-screen (left) */
+            }
+            100% {
+                left: 100vw; /* Move across to the right edge */
+            }
+        }
+        @keyframes wrongSideways {
+            0% {
+                right: -150%;
+            }
+            100% {
+                right: 100vw;
+            }
+        }
+
+        /* Example durations for each fish */
+        #fish1 {
+            animation: moveSideways 4s linear infinite;
+        }
+        #fish2 {
+            animation: moveSideways 6s linear infinite;
+        }
+        #fish3 {
+            animation: moveSideways 8s linear infinite;
+        }
+        #fish4 {
+            animation: moveSideways 10s linear infinite;
+        }
+        #fish5 {
+            animation: moveSideways 15s linear infinite;
+        }
+        #fish6 {
+            animation: moveSideways 5s linear infinite;
+        }
+        #fish7 {
+            animation: moveSideways 9s linear infinite;
+        }
+        #fish8 {
+            animation: moveSideways 11s linear infinite;
+        }
+
+        #reversedfish1 {
+            animation: wrongSideways 5s linear infinite;
+        }
+        #reversedfish2 {
+            animation: wrongSideways 7s linear infinite;
+        }
+        #reversedfish3 {
+            animation: wrongSideways 15s linear infinite;
+        }
+        #reversedfish4 {
+            animation: wrongSideways 10s linear infinite;
+        }
+        #reversedfish5 {
+            animation: wrongSideways 8s linear infinite;
+        }
+        #reversedfish6 {
+            animation: wrongSideways 11s linear infinite;
+        }
+        #reversedfish7 {
+            animation: wrongSideways 6s linear infinite;
+        }
+        #reversedfish8 {
+            animation: wrongSideways 9s linear infinite;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="container1" class="container">
+        <img src="fish1.png" id="fish1" class="fish"/>
+        <img src="fish2.png" id="fish2" class="fish"/>
+        <img src="fish3.png" id="fish3" class="fish"/>
+        <img src="fish4.png" id="fish4" class="fish"/>
+        <img src="fish5.png" id="fish5" class="fish"/>
+        <img src="fish6.png" id="fish6" class="fish"/>
+        <img src="fish7.png" id="fish7" class="fish"/>
+        <img src="fish8.png" id="fish8" class="fish"/>
+    </div>
+
+    <div id="container2" class="container">
+        <img src="reversedfish1.png" id="reversedfish1" class="fish"/>
+        <img src="reversedfish2.png" id="reversedfish2" class="fish"/>
+        <img src="reversedfish3.png" id="reversedfish3" class="fish"/>
+        <img src="reversedfish4.png" id="reversedfish4" class="fish"/>
+        <img src="reversedfish5.png" id="reversedfish5" class="fish"/>
+        <img src="reversedfish6.png" id="reversedfish6" class="fish"/>
+        <img src="reversedfish7.png" id="reversedfish7" class="fish"/>
+        <img src="reversedfish8.png" id="reversedfish8" class="fish"/>
+    </div>
+
+    <script>
+        // Function to set random heights for the fishes
+        function randomizeTop(fish) {
+            // Get viewport height
+            const viewportHeight = window.innerHeight;
+
+            // Generate a random top value (subtracting 50 for fish height margin)
+            const randomTop = Math.floor(Math.random() * (viewportHeight - 50)) + "px";
+
+            // Apply the random top value to the fish
+            fish.style.top = randomTop;
+        }
+
+        // Function to setup listeners for all fishes in a specific container
+        function setupAnimationListeners(containerId) {
+            const container = document.getElementById(containerId);
+            const fishes = container.querySelectorAll(".fish");
+
+            // Loop through each fish in the container
+            fishes.forEach(fish => {
+                // Set initial random height for each fish
+                randomizeTop(fish);
+
+                // Add event listener to update random height on animation iteration
+                fish.addEventListener('animationiteration', () => randomizeTop(fish));
+            });
+        }
+
+        // Start the movement with random heights on page load for both containers
+        window.onload = function() {
+            setupAnimationListeners("container1");
+            setupAnimationListeners("container2");
+        };
+    </script>
+
+</body>
+</html>

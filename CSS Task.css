@@ -1,0 +1,137 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.task {
+    height: 100%;
+    position: relative;
+    overflow: clip;
+    opacity: 20%;
+    border-radius: 15px;
+}
+
+.taskbar {
+    height: 100%;
+    width: 100%;
+    overflow: clip;
+}
+
+.taskborder {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    border: solid 5px #1b47a6;
+    position: absolute;
+    margin-top: 20px;
+}
+
+.taskgeneral{
+    height: 40%;
+    width: 8%;
+    position: fixed;
+    right: 15px;
+    margin-top: 15%;
+    z-index: 10;
+}
+
+.tasklabel {
+    position: absolute;
+    right: 40px;
+}
+
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars */
+    position: relative;
+    height: 100vh;
+    background-image: url('homepage_bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    width: 50%; /* Make the two containers side by side */
+    float: left;
+}
+
+.fish {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    transition: top 0.5s ease;
+}
+
+@keyframes moveSideways {
+    0% {
+        left: -150%; /* Start off-screen (left) */
+    }
+    100% {
+        left: 100vw; /* Move across to the right edge */
+    }
+}
+@keyframes wrongSideways {
+    0% {
+        right: -150%;
+    }
+    100% {
+        right: 100vw;
+    }
+}
+
+/* Example durations for each fish */
+#fish1 {
+    animation: moveSideways 4s linear infinite;
+}
+#fish2 {
+    animation: moveSideways 6s linear infinite;
+}
+#fish3 {
+    animation: moveSideways 8s linear infinite;
+}
+#fish4 {
+    animation: moveSideways 10s linear infinite;
+}
+#fish5 {
+    animation: moveSideways 15s linear infinite;
+}
+#fish6 {
+    animation: moveSideways 5s linear infinite;
+}
+#fish7 {
+    animation: moveSideways 9s linear infinite;
+}
+#fish8 {
+    animation: moveSideways 11s linear infinite;
+}
+
+#reversedfish1 {
+    animation: wrongSideways 5s linear infinite;
+}
+#reversedfish2 {
+    animation: wrongSideways 7s linear infinite;
+}
+#reversedfish3 {
+    animation: wrongSideways 15s linear infinite;
+}
+#reversedfish4 {
+    animation: wrongSideways 10s linear infinite;
+}
+#reversedfish5 {
+    animation: wrongSideways 8s linear infinite;
+}
+#reversedfish6 {
+    animation: wrongSideways 11s linear infinite;
+}
+#reversedfish7 {
+    animation: wrongSideways 6s linear infinite;
+}
+#reversedfish8 {
+    animation: wrongSideways 9s linear infinite;
+}

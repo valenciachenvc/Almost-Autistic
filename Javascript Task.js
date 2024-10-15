@@ -40,4 +40,4 @@ function setupAnimationListeners(containerId) {
 window.onload = function() {
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
-};
+}

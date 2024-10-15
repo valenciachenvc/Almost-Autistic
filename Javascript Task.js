@@ -7,37 +7,84 @@ let opacityValue = 0.2; // Starting opacity value
                     opacityValue += 0.1; // Increase opacity by 0.1 on each click
                     img.style.opacity = opacityValue.toFixed(1); // Set new opacity
                 }
-            }
+            };
 
 // Function to set random heights for the fishes
 function randomizeTop(fish) {
-    // Get viewport height
     const viewportHeight = window.innerHeight;
-
-    // Generate a random top value (subtracting 50 for fish height margin)
     const randomTop = Math.floor(Math.random() * (viewportHeight - 50)) + "px";
-
-    // Apply the random top value to the fish
     fish.style.top = randomTop;
 }
 
-// Function to setup listeners for all fishes in a specific container
+// Function to setup animation listeners
 function setupAnimationListeners(containerId) {
     const container = document.getElementById(containerId);
     const fishes = container.querySelectorAll(".fish");
 
-    // Loop through each fish in the container
     fishes.forEach(fish => {
-        // Set initial random height for each fish
         randomizeTop(fish);
-
-        // Add event listener to update random height on animation iteration
         fish.addEventListener('animationiteration', () => randomizeTop(fish));
     });
 }
 
-// Start the movement with random heights on page load for both containers
+// Function to check collision with fish elements
+function checkCollision(food) {
+    const fishes = document.querySelectorAll('.fish');
+    const foodRect = food.getBoundingClientRect();
+
+    fishes.forEach(fish => {
+        const fishRect = fish.getBoundingClientRect();
+
+        if (
+            foodRect.left < fishRect.right &&
+            foodRect.right > fishRect.left &&
+            foodRect.top < fishRect.bottom &&
+            foodRect.bottom > fishRect.top
+        ) {
+            // Make both fish and food item disappear
+            food.classList.add('disappear');
+            increaseOpacity();
+        }
+    });
+}
+// Dragging logic for the food item
+function makefood(food) {
+    let isDragging = false;
+
+    food.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        document.body.style.cursor = 'grabbing';
+
+        const moveItem = (event) => {
+            if (isDragging) {
+                food.style.left = `${event.clientX - food.offsetWidth / 2}px`;
+                food.style.top = `${event.clientY - food.offsetHeight / 2}px`;
+                checkCollision(food);
+            }
+        };
+
+        document.addEventListener('mousemove', moveItem);
+
+        document.addEventListener('mouseup', function() {
+            isDragging = false;
+            document.body.style.cursor = 'auto';
+            document.removeEventListener('mousemove', moveItem);
+        });
+    });
+}
+
+// Function to spawn a food item on button click
+function spawnfood() {
+    const food = document.createElement('div');
+    food.classList.add('foot');
+    document.body.appendChild(food);
+
+    // Make the new item food
+    makefood(food);
+}
+
+// Setup animation listeners on page load
 window.onload = function() {
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
-}
+};

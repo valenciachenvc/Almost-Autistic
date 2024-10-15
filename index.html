@@ -9,6 +9,27 @@
 </head>
 <body>
 
+    <div class="navdiv">
+        <!-- Checkbox -->
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <!-- nav items -->
+        <nav class="nav-bar">
+            <ul class="nav-menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <button class="spawn-button" onclick="spawnfood()">Spawn food Item</button>
+
     <div class = "taskgeneral">
         <p class = "tasklabel">Task</p>
         <div class = "taskborder">
@@ -17,7 +38,6 @@
             </div>
         </div>
     </div>
-    <button class = "button" id = "btn" onclick = "increaseOpacity()">Task</button>
 
     <div id="container1" class="container">
         <img src="fish1.png" id="fish1" class="fish"/>

@@ -53,7 +53,6 @@ function checkCollision(food) {
 // Dragging logic for the food item
 function makefood(food) {
     let isDragging = false;
-
     food.addEventListener('mousedown', function(e) {
         isDragging = true;
         document.body.style.cursor = 'grabbing';
@@ -88,6 +87,9 @@ function spawnfood() {
 
 // Setup animation listeners on page load
 window.onload = function() {
+    let counter = 10;
+    const countery = getElementById("counters")
+    countery.innerHTML = counter;
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
 };

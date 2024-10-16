@@ -87,9 +87,6 @@ function spawnfood() {
 
 // Setup animation listeners on page load
 window.onload = function() {
-    let counter = 10;
-    const countery = getElementById("counters")
-    countery.innerHTML = counter;
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
 };

@@ -170,54 +170,18 @@ body {
     left: 0;
 }
 
-/* Hide the checkbox */
-.nav-toggle {
-    display: none;
-    background-color: #333;
-}
-
-/* The hamburger button */
-.nav-toggle-label {
-    cursor: pointer;
-    display: inline-block;
-    width: 35px;
-    height: 30px;
-    position: absolute;
-    top: 15px;
-    left: 20px;
-    z-index: 2;
+.navbg {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 80px;
+    background-color: #fffdfd;
+    filter: blur(40px); 
 }
 
 .navdiv{
-    padding: 30px;
-    background-color: #333;
-}
-
-/* Hamburger icon bars */
-.nav-toggle-label span {
-    background-color:#ffffff;
-    display: block;
-    width: 100%;
-    height: 4px;
-    margin: 5px 0;
-    transition: all 0.4s ease;
-    position: relative;
-}
-
-/* The hidden navigation bar */
-.nav-bar {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 80%;
-    padding: 10px;
-    transition: 0.4s ease-in;
-}
-
-/* Slide the nav-bar in from the left when checkbox is checked */
-.nav-toggle:checked + .nav-toggle-label + .nav-bar {
-    left: 8%;
-    width: 65%;
+    padding: 15px;
+    width: 70%;
 }
 
 /* Menu items styling */
@@ -225,27 +189,15 @@ body {
     list-style: none;
     display: flex;
     justify-content: space-around;
+    font-family: 'Indie Flower', cursive;
 }
 
 .nav-menu li a {
-    color: white;
+    color: #333;
     text-decoration: none;
     padding: 10px 20px;
     display: inline-block;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-}
-
-/* Animation for the hamburger icon when checked */
-.nav-toggle:checked + .nav-toggle-label span:nth-child(1) {
-    transform: rotate(45deg);
-    top: 9px;
-}
-.nav-toggle:checked + .nav-toggle-label span:nth-child(2) {
-    opacity: 0;
-}
-.nav-toggle:checked + .nav-toggle-label span:nth-child(3) {
-    transform: rotate(-45deg);
-    top: -9px;
+    font-family: 'Indie Flower', cursive;
 }
 
 a {

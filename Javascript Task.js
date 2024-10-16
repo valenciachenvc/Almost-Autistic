@@ -6,6 +6,9 @@ let opacityValue = 0.2; // Starting opacity value
                 if(opacityValue < 1) {
                     opacityValue += 0.1; // Increase opacity by 0.1 on each click
                     img.style.opacity = opacityValue.toFixed(1); // Set new opacity
+                } else if (opacityValue >= 1){
+                    opacityValue = 0.2;
+                    img.style.opacity = opacityValue.toFixed(1);
                 }
             };
 

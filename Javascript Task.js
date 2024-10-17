@@ -1,14 +1,16 @@
 let opacityValue = 0.2; // Starting opacity value
+let foodCounter = 10;
 
             function increaseOpacity() {
                 const img = document.getElementById("task");
     
-                if(opacityValue < 1) {
+                if (opacityValue < 1) {
                     opacityValue += 0.1; // Increase opacity by 0.1 on each click
                     img.style.opacity = opacityValue.toFixed(1); // Set new opacity
-                } else if (opacityValue >= 1){
-                    opacityValue = 0.2;
-                    img.style.opacity = opacityValue.toFixed(1);
+                    if (opacityValue > 0.9){
+                        opacityValue = 0.2;
+                        img.style.opacity = opacityValue.toFixed(1);
+                    }
                 }
             };
 
@@ -75,14 +77,23 @@ function makefood(food) {
     });
 }
 
+let counter = 10;
 // Function to spawn a food item on button click
-function spawnfood() {
-    const food = document.createElement('div');
-    food.classList.add('foot');
-    document.body.appendChild(food);
+    function spawnfood() {
+        if (foodCounter > 0) {
+            const food = document.createElement('div');
+            food.classList.add('foot');
+            document.body.appendChild(food);
 
-    // Make the new item food
-    makefood(food);
+            // Make the new item food
+            makefood(food);
+            foodCounter--;
+
+            // Update the food counter display
+            document.getElementById('foodCounter').innerText = foodCounter;
+        } else {
+            alert('Not enough food');
+        }
 }
 
 // Setup animation listeners on page load

@@ -2,6 +2,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
+            -webkit-user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
 }
 
 .task {
@@ -149,7 +155,7 @@ body {
     aspect-ratio: 1 / 1;
     position: absolute;
     top: 6%;
-    left: 93%;
+    left: 85%;
     cursor: grab;
     z-index: 1000;
     background-image: url("pellet.png");
@@ -169,12 +175,14 @@ body {
     height: 100%;
     width: 100%;
     font-family: 'Indie Flower', cursive;
+    border-radius: 10px;
+    background-color: #f9b971;
 }
 
 .navbg {
     position: fixed;
     top: 0;
-    width: 100%;
+    width: 80%;
     height: 80px;
     background-color: #fffdfd;
     filter: blur(40px); 
@@ -237,4 +245,12 @@ a:hover:before {
     padding: 10px;
     border-radius: 15px;
     border: #ed8f0c solid 10px;
+}
+
+.alert {
+    visibility: hidden;
+    height: 30%;
+    width: 40%;
+    z-index: 10000;
+    background-color: #f59e3b;
 }

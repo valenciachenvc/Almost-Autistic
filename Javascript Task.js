@@ -1,5 +1,7 @@
 let opacityValue = 0.2; // Starting opacity value
-let foodCounter = 10;
+let foodCounter = parseInt(localStorage.getItem('foodCounter')) || 10;
+let score = 0;
+document.getElementById('foodCounter').innerText = foodCounter;
 
             function increaseOpacity() {
                 const img = document.getElementById("task");
@@ -48,7 +50,17 @@ function checkCollision(food) {
         ) {
             // Make both fish and food item disappear
             food.classList.add('disappear');
-            increaseOpacity();
+
+            // Show the bubble at the fish's position
+            const bubble = document.getElementById('bubble');
+            bubble.style.left = `${fishRect.left + fishRect.width / 2 - bubble.offsetWidth / 2}px`;
+            bubble.style.top = `${fishRect.top - bubble.offsetHeight}px`;
+            bubble.classList.remove('disappear');
+
+            // Hide the bubble after the animation is over
+            setTimeout(() => {
+                bubble.classList.add('disappear');
+            }, 2000);
         }
     });
 }
@@ -77,7 +89,6 @@ function makefood(food) {
     });
 }
 
-let counter = 10;
 // Function to spawn a food item on button click
     function spawnfood() {
         if (foodCounter > 0) {
@@ -89,10 +100,13 @@ let counter = 10;
             makefood(food);
             foodCounter--;
 
+            // Update local storage
+            localStorage.setItem('foodCounter', foodCounter);
+            
             // Update the food counter display
             document.getElementById('foodCounter').innerText = foodCounter;
         } else {
-            alert('Not enough food');
+            alert('Not Enough Food');
         }
 }
 
@@ -100,6 +114,7 @@ let counter = 10;
 window.onload = function() {
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
+    document.getElementById("foodCounter").innerText = foodCounter;
 };
 
 const startButton = document.getElementById('start-btn');
@@ -109,8 +124,9 @@ const questionElement = document.getElementById('question');
 const answerButtonsElement = document.getElementById('answer-buttons');
 const scoreContainer = document.getElementById('score-container');
 const scoreElement = document.getElementById('score');
+const backHome = document.getElementById('back-home');
 
-let currentQuestionIndex, score;
+let currentQuestionIndex;
 
 const questions = [
     {
@@ -222,7 +238,12 @@ function startQuiz() {
 
 function setNextQuestion() {
     resetState();
-    showQuestion(questions[currentQuestionIndex]);
+    if (currentQuestionIndex >= 10) {
+        startButton.classList.add('hover-effect');
+        showScore();
+    } else {
+        showQuestion(questions[currentQuestionIndex]);
+    };
 }
 
 function showQuestion(question) {
@@ -230,7 +251,7 @@ function showQuestion(question) {
     question.answers.forEach(answer => {
         const button = document.createElement('button');
         button.textContent = answer.text;
-        button.classList.add('btn');
+        button.classList.add('btn', 'hover-effect');
         if (answer.correct) {
             button.dataset.correct = answer.correct;
         }
@@ -257,7 +278,7 @@ function selectAnswer(e) {
         score++;
     }
     scoreElement.textContent = score;
-    if (questions.length > currentQuestionIndex + 1) {
+    if (questions.length > currentQuestionIndex) {
         nextButton.classList.remove('hide');
     } else {
         showScore();
@@ -268,8 +289,16 @@ function setStatusClass(element, correct) {
     clearStatusClass(element);
     if (correct) {
         element.classList.add('correct');
+        const buttonAnswer = document.getElementsByClassName('hover-effect');
+        for (let i = 0; i < buttonAnswer.length; i++) {
+            buttonAnswer[i].classList.remove('hover-effect');
+        }
     } else {
         element.classList.add('wrong');
+        const buttonAnswer = document.getElementsByClassName('hover-effect');
+        for (let i = 0; i < buttonAnswer.length; i++) {
+            buttonAnswer[i].classList.remove('hover-effect');
+        }   
     }
 }
 
@@ -284,4 +313,10 @@ function showScore() {
     scoreContainer.classList.remove('hide');
     startButton.textContent = 'Restart';
     startButton.classList.remove('hide');
+    backHome.classList.remove('hide');
 }
+
+function scoreAdd(){
+    document.getElementById('foodCounter').innerText = foodCounter + score;
+    foodCounter = foodCounter + score;
+};

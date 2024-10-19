@@ -228,7 +228,7 @@ a:before {
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
 }
-a:hover:before {
+.nav-line:hover:before {
     visibility: visible;
     -webkit-transform: scaleX(1);
     transform: scaleX(1);
@@ -253,4 +253,21 @@ a:hover:before {
     width: 40%;
     z-index: 10000;
     background-color: #f59e3b;
+}
+.bubble {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    animation: floatUp 2s linear;
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: 0;
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px);
+        opacity: 0;
+    }
 }

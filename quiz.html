@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz</title>
+    <link rel="stylesheet" href="quiz.css">
+    <link rel="stylesheet" href="CSS Task.css">
+</head>
+<body>
+    <div class="navbg"></div>
+    <div class="navdiv">
+        <!-- nav items -->
+        <nav class="nav-bar">
+            <ul class="nav-menu">
+                <li><a class="nav-line" href="index.html">Home</a></li>
+                <li><a class="nav-line" href="#">About</a></li>
+                <li><a class="nav-line" href="quiz.html">Quiz</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class = "taskgeneral">
+        <p class = "tasklabel">Task</p>
+        <div class = "taskborder">
+            <div class = "taskbar" id = "taskbar">
+                <img class = "task" id = "task" src = "Ikan_2-removebg-preview.png"/>
+            </div>
+        </div>
+        <div id = "counters" class = "counters">
+            <button class="spawn-button" onclick="spawnfood()">Spawn Food Item <span id="foodCounter">10</span></button>
+        </div>
+    </div>
+
+    <div class="quiz-container" id="quiz-container">
+        <h1>Sustainable Development Goals Quiz</h1>
+        <div id="question-container" class="hide">
+            <div id="question">Question text</div>
+            <div id="answer-buttons" class="btn-grid"></div>
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn hover-effect">Start Quiz</button>
+            <button id="next-btn" class="next-btn btn hide hover-effect-next">Next</button>
+        </div>
+        <div id="score-container" class="hide">
+            <h2>Your Score: <span id="score">0</span></h2>
+        </div>
+        <a href="index.html" id="back-home" class="back-home btn hide hover-effect-next" onclick="scoreAdd()">Back Home</a>
+    </div>
+    <script src="Javascript Quiz.js"></script>
+</body>
+</html>

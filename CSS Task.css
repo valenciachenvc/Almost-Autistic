@@ -1,0 +1,273 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    user-select: none;
+            -webkit-user-drag: none;
+            user-select: none;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+}
+
+.task {
+    height: 100%;
+    position: relative;
+    overflow: clip;
+    opacity: 20%;
+    border-radius: 15px;
+}
+
+.taskbar {
+    height: 100%;
+    width: 100%;
+    overflow: clip;
+    z-index: 8;
+}
+
+.taskborder {
+    height: 100%;
+    width: 100%;
+    border-radius: 15px;
+    border: solid 5px #1b47a6;
+    position: absolute;
+    margin-top: 25px;
+    background-color: #42c2f5;
+}
+
+.taskgeneral{
+    height: 40%;
+    width: 8%;
+    position: fixed;
+    right: 15px;
+    margin-top: 10%;
+    z-index: 10;
+}
+
+.tasklabel {
+    position: absolute;
+    right: 40px;
+    font-family: "Papyrus";
+    font-weight: bold;
+}
+
+body {
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars */
+    position: relative;
+    height: 100vh;
+    background-image: url('homepage_bg.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container {
+    position: relative;
+    height: 100vh;
+    width: 50%; /* Make the two containers side by side */
+    float: left;
+}
+
+.fish {
+    position: absolute;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-drag: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+@keyframes moveSideways {
+    0% {
+        left: -150%; /* Start off-screen (left) */
+    }
+    100% {
+        left: 100vw; /* Move across to the right edge */
+    }
+}
+@keyframes wrongSideways {
+    0% {
+        right: -150%;
+    }
+    100% {
+        right: 100vw;
+    }
+}
+
+/* Example durations for each fish */
+#fish1 {
+    animation: moveSideways 4s linear infinite;
+}
+#fish2 {
+    animation: moveSideways 6s linear infinite;
+}
+#fish3 {
+    animation: moveSideways 8s linear infinite;
+}
+#fish4 {
+    animation: moveSideways 10s linear infinite;
+}
+#fish5 {
+    animation: moveSideways 15s linear infinite;
+}
+#fish6 {
+    animation: moveSideways 5s linear infinite;
+}
+#fish7 {
+    animation: moveSideways 9s linear infinite;
+}
+#fish8 {
+    animation: moveSideways 11s linear infinite;
+}
+
+#reversedfish1 {
+    animation: wrongSideways 5s linear infinite;
+}
+#reversedfish2 {
+    animation: wrongSideways 7s linear infinite;
+}
+#reversedfish3 {
+    animation: wrongSideways 15s linear infinite;
+}
+#reversedfish4 {
+    animation: wrongSideways 10s linear infinite;
+}
+#reversedfish5 {
+    animation: wrongSideways 8s linear infinite;
+}
+#reversedfish6 {
+    animation: wrongSideways 11s linear infinite;
+}
+#reversedfish7 {
+    animation: wrongSideways 6s linear infinite;
+}
+#reversedfish8 {
+    animation: wrongSideways 9s linear infinite;
+}
+
+/* food Item */
+.foot {
+    width: 4%;
+    aspect-ratio: 1 / 1;
+    position: absolute;
+    top: 6%;
+    left: 85%;
+    cursor: grab;
+    z-index: 1000;
+    background-image: url("pellet.png");
+    background-attachment:absolute;
+    background-size:inherit;
+}
+/* Fish and item disappear when touched */
+.disappear {
+    display: none;
+}
+
+/* Button Style */
+.spawn-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    font-family: 'Indie Flower', cursive;
+    border-radius: 10px;
+    background-color: #f9b971;
+}
+
+.navbg {
+    position: fixed;
+    top: 0;
+    width: 80%;
+    height: 80px;
+    background-color: #fffdfd;
+    filter: blur(40px); 
+}
+
+.navdiv{
+    padding: 15px;
+    width: 80%;
+}
+
+/* Menu items styling */
+.nav-menu {
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    font-family: 'Indie Flower', cursive;
+}
+
+.nav-menu li a {
+    color: #333;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    font-family: 'Indie Flower', cursive;
+}
+
+a {
+    position: relative;
+    color: #000;
+    text-decoration: none; 
+}
+a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: #333;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+.nav-line:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+.counters {
+    position: absolute;
+    justify-self: auto;
+    width: 95%;
+    aspect-ratio: 1 / 1;
+    top: -70%;
+    background-color: #f59e3b;
+    z-index: 999;
+    padding: 10px;
+    border-radius: 15px;
+    border: #ed8f0c solid 10px;
+}
+
+.alert {
+    visibility: hidden;
+    height: 30%;
+    width: 40%;
+    z-index: 10000;
+    background-color: #f59e3b;
+}
+.bubble {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    animation: floatUp 2s linear;
+}
+
+@keyframes floatUp {
+    0% {
+        bottom: 0;
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-60px);
+        opacity: 0;
+    }
+}

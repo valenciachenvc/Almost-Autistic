@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facts & Figures</title>
+    <link rel="stylesheet" href="factsstyles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="navbg"></div>
+    <div class="navdiv">
+        <!-- nav items -->
+        <nav class="nav-bar">
+            <ul class="nav-menu">
+                <li><a class="nav-line" href="index.html">Home</a></li>
+                <li><a class="nav-line" href="aboutus.html">About</a></li>
+                <li><a class="nav-line" href="quiz.html">Quiz</a></li>
+                <li><a class="nav-line" href="facts.html">Facts</a></li>
+            </ul>
+        </nav>
+    </div>
+    <header>
+        <h1>Explore Amazing Facts & Figures about the Ocean and its Plastic Pollution!</h1>
+        <p>Source: <a href="https://www.condorferries.co.uk/" target="_blank"> <em> condorferries </em> </a> </p>
+    </header>
+
+    <section class="facts-section">
+        <div class="fact-box">
+            <h1>Did You Know?</h1>
+            <div class="fact-text">
+                <p id="fact-text">Click the button below to see a fact!</p>
+            </div>
+            <div class="showFact">
+                <button onclick="showFact()">Show Fact</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="counter-section">
+        <div class="counter-container">
+            <h1>Plastic Pollution in the Ocean</h1>
+            <p>Live count of the total mass of plastic (in kg) ending up in the ocean from the moment this website is opened. </p>
+            <p class="stat-number" id="populationCounter">0</p>
+        </div>
+    </section>
+
+    <section class="chart-section">
+        <h2>Data Visualization</h2>
+        <canvas id="factsChart" width="400" height="200"></canvas>
+    </section>
+
+    <script src="factsscript.js"></script>
+</body>
+</html>

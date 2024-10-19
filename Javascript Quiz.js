@@ -111,6 +111,7 @@ nextButton.addEventListener('click', () => {
 
 function startQuiz() {
     startButton.classList.add('hide');
+    backHome.classList.add('hide');
     currentQuestionIndex = 0;
     score = 0;
     questionContainer.classList.remove('hide');
@@ -120,6 +121,7 @@ function startQuiz() {
 
 function setNextQuestion() {
     resetState();
+    answerButtonsElement.classList.remove('unclickable');
     if (currentQuestionIndex >= 10) {
         startButton.classList.add('hover-effect');
         showScore();
@@ -171,12 +173,14 @@ function setStatusClass(element, correct) {
     clearStatusClass(element);
     if (correct) {
         element.classList.add('correct');
+        answerButtonsElement.classList.add('unclickable');
         const buttonAnswer = document.getElementsByClassName('hover-effect');
         for (let i = 0; i < buttonAnswer.length; i++) {
             buttonAnswer[i].classList.remove('hover-effect');
         }
     } else {
         element.classList.add('wrong');
+        answerButtonsElement.classList.add('unclickable');
         const buttonAnswer = document.getElementsByClassName('hover-effect');
         for (let i = 0; i < buttonAnswer.length; i++) {
             buttonAnswer[i].classList.remove('hover-effect');
@@ -190,6 +194,7 @@ function clearStatusClass(element) {
 }
 
 function showScore() {
+    document.getElementById('score').innerText = score;  
     questionContainer.classList.add('hide');
     nextButton.classList.add('hide');
     scoreContainer.classList.remove('hide');
@@ -206,4 +211,5 @@ function scoreAdd(){
 
 window.onload = function() {
     document.getElementById("foodCounter").innerText = foodCounter;
+    img.style.opacity = opacityValue.toFixed(1);
 }

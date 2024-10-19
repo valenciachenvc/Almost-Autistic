@@ -228,6 +228,7 @@ a:before {
     -webkit-transition: all 0.3s ease-in-out 0s;
     transition: all 0.3s ease-in-out 0s;
 }
+
 .nav-line:hover:before {
     visibility: visible;
     -webkit-transform: scaleX(1);
@@ -235,11 +236,11 @@ a:before {
 }
 
 .counters {
-    position: absolute;
-    justify-self: auto;
-    width: 95%;
+    position: fixed;
+    width: 7%;
     aspect-ratio: 1 / 1;
-    top: -70%;
+    top: 3%;
+    right: 2%;
     background-color: #f59e3b;
     z-index: 999;
     padding: 10px;

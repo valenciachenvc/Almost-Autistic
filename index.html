@@ -20,15 +20,16 @@
         </nav>
     </div>
 
+    <div id = "counters" class = "counters">
+        <button class="spawn-button" onclick="spawnfood()">Spawn Food Item <span id="foodCounter">10</span></button>
+    </div>
+
     <div class = "taskgeneral">
         <p class = "tasklabel">Task</p>
         <div class = "taskborder">
             <div class = "taskbar" id = "taskbar">
                 <img class = "task" id = "task" src = "Ikan_2-removebg-preview.png"/>
             </div>
-        </div>
-        <div id = "counters" class = "counters">
-            <button class="spawn-button" onclick="spawnfood()">Spawn Food Item <span id="foodCounter">10</span></button>
         </div>
     </div>
 
@@ -54,6 +55,7 @@
         <img src="reversedfish8.png" id="reversedfish8" class="fish"/>
     </div>
     <img src="bubble.png" id="bubble" class="bubble disappear"/>
+    <audio id="bubblesound" src="plop.mp3"></audio>
     <script src = "Javascript Task.js"></script>
     <script src = "Javscript Sampah.js"></script>
 </body>

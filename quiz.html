@@ -8,16 +8,21 @@
     <link rel="stylesheet" href="CSS Task.css">
 </head>
 <body>
+    <p><span class = "test" id = ""></span></p>
     <div class="navbg"></div>
     <div class="navdiv">
         <!-- nav items -->
         <nav class="nav-bar">
             <ul class="nav-menu">
-                <li><a class="nav-line" href="index.html">Home</a></li>
+                <li><a class="nav-line" href="index.html" onclick="scoreAdd()">Home</a></li>
                 <li><a class="nav-line" href="#">About</a></li>
-                <li><a class="nav-line" href="quiz.html">Quiz</a></li>
+                <li><a class="nav-line">Quiz</a></li>
             </ul>
         </nav>
+    </div>
+
+    <div id = "counters" class = "counters">
+        <button class="spawn-button" onclick="spawnfood()">Spawn Food Item <span id="foodCounter">10</span></button>
     </div>
 
     <div class = "taskgeneral">
@@ -26,9 +31,6 @@
             <div class = "taskbar" id = "taskbar">
                 <img class = "task" id = "task" src = "Ikan_2-removebg-preview.png"/>
             </div>
-        </div>
-        <div id = "counters" class = "counters">
-            <button class="spawn-button" onclick="spawnfood()">Spawn Food Item <span id="foodCounter">10</span></button>
         </div>
     </div>
 

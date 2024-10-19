@@ -82,3 +82,14 @@ h1 {
 .wrong {
     background-color: #dc3545;
 }
+
+.test {
+    position: absolute;
+    bottom: 5px;
+    z-index: 10000;
+    left: 5px;
+}
+
+.unclickable {
+    pointer-events: none;
+}

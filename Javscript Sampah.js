@@ -69,3 +69,10 @@
         setInterval(() => {
             spawnTrashOnInterval();
         }, 3000);
+
+        window.onload = function() {
+            setupAnimationListeners("container1");
+            setupAnimationListeners("container2");
+            document.getElementById("foodCounter").innerText = foodCounter;
+            
+        };

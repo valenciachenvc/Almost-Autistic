@@ -191,7 +191,7 @@ function makefood(food) {
 window.onload = function() {
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
-    document.getElementById("foodCounter").innerText = foodCounter;
+    document.getElementById("foodCounter").innerText = 0;
     spawnTrashOnClick();
     img.style.opacity = opacityValue.toFixed(1);
 };

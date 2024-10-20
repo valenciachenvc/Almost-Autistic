@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <p><span class = "test" id = ""></span></p>
+    <img class="logo" id="logo" src="Logo.png"/>
     <div class="navbg"></div>
     <div class="navdiv">
         <!-- nav items -->
@@ -17,16 +17,16 @@
                 <li><a class="nav-line" href="index.html" onclick="scoreAdd()">Home</a></li>
                 <li><a class="nav-line" href="aboutus.html">About Us</a></li>
                 <li><a class="nav-line">Quiz</a></li>
-                <li><a class="nav-line" href="facts.html">Fact</a></li>
+                <li><a class="nav-line" href="facts.html">Facts</a></li>
             </ul>
         </nav>
     </div>
 
-    <div id = "counters" class = "counters">
+    <div id = "counters" class = "counters disappear">
         <button class="spawn-button" onclick="spawnfood()">Spawn Food Item <span id="foodCounter">10</span></button>
     </div>
 
-    <div class = "taskgeneral">
+    <div class = "taskgeneral disappear">
         <p class = "tasklabel">Task</p>
         <div class = "taskborder">
             <div class = "taskbar" id = "taskbar">

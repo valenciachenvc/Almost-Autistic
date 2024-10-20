@@ -193,6 +193,11 @@ body {
     width: 80%;
 }
 
+.nav-bar{
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
 /* Menu items styling */
 .nav-menu {
     list-style: none;
@@ -248,13 +253,6 @@ a:before {
     border: #ed8f0c solid 10px;
 }
 
-.alert {
-    visibility: hidden;
-    height: 30%;
-    width: 40%;
-    z-index: 10000;
-    background-color: #f59e3b;
-}
 .bubble {
     position: absolute;
     width: 50px;
@@ -271,4 +269,24 @@ a:before {
         transform: translateY(-60px);
         opacity: 0;
     }
+}
+
+.trash {
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 60px; /* Set width for trash */
+    height: 60px; /* Set height for trash */
+    cursor: pointer;
+    z-index: 1000000;
+}
+.disappear {
+    display: none;
+}
+
+.logo {
+    position: fixed;
+    margin-left: 20px;
+    width: 7%;
+    z-index: 100;
 }

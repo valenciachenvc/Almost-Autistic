@@ -7,7 +7,6 @@ const scoreContainer = document.getElementById('score-container');
 const scoreElement = document.getElementById('score');
 const backHome = document.getElementById('back-home');
 let foodCounter = parseInt(localStorage.getItem('foodCounter'));
-
 let currentQuestionIndex = 0;
 
 const questions = [
@@ -211,5 +210,7 @@ function scoreAdd(){
 
 window.onload = function() {
     document.getElementById("foodCounter").innerText = foodCounter;
+    const img = document.getElementById('task');
+    let opacityValue = parseInt(localStorage.getItem('opacityValue'));
     img.style.opacity = opacityValue.toFixed(1);
 }

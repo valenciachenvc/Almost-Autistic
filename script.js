@@ -1,25 +1,23 @@
-let opacityValue = parseInt(localStorage.getItem('opacityValue')); // Starting opacity value
 let foodCounter = parseInt(localStorage.getItem('foodCounter'));
+let opacityValue = 0.2; // Starting opacity
 let score = 0;
 document.getElementById('foodCounter').innerText = foodCounter;
 
-            function increaseOpacity() {
-                const img = document.getElementById("task");
-    
-                if (opacityValue < 1) {
-                    opacityValue += 0.1; // Increase opacity by 0.1 on each click
-                    img.style.opacity = opacityValue.toFixed(1); // Set new opacity
-                    localStorage.setItem('opacityValue', opacityValue);
-                    if (opacityValue > 0.9){
-                        foodCounter += 1;
-                        localStorage.setItem('foodCounter', foodCounter);
-                        document.getElementById('foodCounter').innerText = foodCounter;
-                        opacityValue = 0.2;
-                        img.style.opacity = opacityValue.toFixed(1);
-                        localStorage.setItem('task', opacityValue);
-                    }
-                }
-            };
+function increaseOpacity() {
+    const img = document.getElementById('task');
+
+    if (opacityValue < 1) {
+        opacityValue += 0.1 // Increase opacity by 0.1 on each click
+        img.style.opacity = opacityValue.toFixed(1); // Set new opacity
+        if (opacityValue > 0.9){
+            foodCounter += 1;
+            localStorage.setItem('foodCounter', foodCounter);
+            document.getElementById('foodCounter').innerText = foodCounter;
+            opacityValue = 0.2;
+            img.style.opacity = opacityValue.toFixed(1);
+        }
+    }
+};
 
 // Function to set random heights for the fishes
 function randomizeTop(fish) {
@@ -59,8 +57,8 @@ function checkCollision(food) {
 
             // Show the bubble at the fish's position
             const bubble = document.getElementById('bubble');
-            bubble.style.left = `${fishRect.left + fishRect.width / 2 - bubble.offsetWidth / 2}px`;
-            bubble.style.top = `${fishRect.top - bubble.offsetHeight}px`;
+            bubble.style.left = (fishRect.left + fishRect.width / 2 - bubble.offsetWidth / 2) + 'px';
+            bubble.style.top = (fishRect.top - bubble.offsetHeight) + 'px';
             bubble.classList.remove('disappear');
 
             // Hide the bubble after the animation is over
@@ -79,8 +77,8 @@ function makefood(food) {
 
         const moveItem = (event) => {
             if (isDragging) {
-                food.style.left = `${event.clientX - food.offsetWidth / 2}px`;
-                food.style.top = `${event.clientY - food.offsetHeight / 2}px`;
+                food.style.left = (event.clientX - food.offsetWidth / 2) + 'px';
+                food.style.top = (event.clientY - food.offsetHeight / 2) + 'px';
                 checkCollision(food);
             }
         };
@@ -96,102 +94,112 @@ function makefood(food) {
 }
 
 // Function to spawn a food item on button click
-    function spawnfood() {
-        if (foodCounter > 0) {
-            const food = document.createElement('div');
-            food.classList.add('foot');
-            document.body.appendChild(food);
+function spawnfood() {
+    if (foodCounter > 0) {
+        const food = document.createElement('div');
+        food.classList.add('foot');
+        document.body.appendChild(food);
 
-            // Make the new item food
-            makefood(food);
-            foodCounter--;
+        // Make the new item food
+        makefood(food);
+        foodCounter--;
 
-            // Update local storage
-            localStorage.setItem('foodCounter', foodCounter);
-            
-            // Update the food counter display
-            document.getElementById('foodCounter').innerText = foodCounter;
-        } else {
-            alert('Not Enough Food');
-        }
+        // Update local storage
+        localStorage.setItem('foodCounter', foodCounter);
+        
+        // Update the food counter display
+        document.getElementById('foodCounter').innerText = foodCounter;
+    } else {
+        alert('Not Enough Food');
+    }
 }
-        // Function to spawn trash when clicked (instant spawn)
-        function spawnTrashOnClick() {
-            const numtrash = Math.floor(Math.random() * 4) + 1; // Random number between 1 and 4
-            const trash = document.createElement('div');
-            trash.classList.add('trash'); // Add the common 'trash' class
+// Function to spawn trash when clicked (instant spawn)
+const maxTrash = 10; // Set the maximum number of trash items allowed on screen
+let currentTrashCount = 0; // Counter for the number of trash elements currently on screen
 
-            // Randomize which trash image to use
-            switch (numtrash) {
-                case 1:
-                    trash.style.backgroundImage = "url('trash1.png')";
-                    break;
-                case 2:
-                    trash.style.backgroundImage = "url('trash2.png')";
-                    break;
-                case 3:
-                    trash.style.backgroundImage = "url('trash3.png')";
-                    break;
-                case 4:
-                    trash.style.backgroundImage = "url('trash4.png')";
-                    break;
-            }
-            document.body.appendChild(trash);
+// Function to spawn trash when clicked (instant spawn)
+function spawnTrashOnClick() {
+    if (currentTrashCount >= maxTrash) return; // Stop spawning if maxTrash is reached
+    const numtrash = Math.floor(Math.random() * 4) + 1; // Random number between 1 and 4
+    const trash = document.createElement('div');
+    trash.classList.add('trash'); // Add the common 'trash' class
 
-            // Set random positions for the trash
-            trash.style.left = `${Math.floor(Math.random() * (window.innerWidth - 50))}px`;
-            trash.style.top = `${Math.floor(Math.random() * (window.innerHeight - 50))}px`;
+    // Randomize which trash image to use
+    switch (numtrash) {
+        case 1:
+            trash.style.backgroundImage = "url('trash1.png')";
+            break;
+        case 2:
+            trash.style.backgroundImage = "url('trash2.png')";
+            break;
+        case 3:
+            trash.style.backgroundImage = "url('trash3.png')";
+            break;
+        case 4:
+            trash.style.backgroundImage = "url('trash4.png')";
+            break;
+    }
+    document.body.appendChild(trash);
+    currentTrashCount++; // Increment trash count
 
-            // Make trash disappear on click and immediately spawn a new one
-            trash.addEventListener('click', () => {
-                trash.classList.add('disappear');
-                spawnTrashOnClick();
-            });
-        }
+    // Set random positions for the trash
+    trash.style.left = Math.floor(Math.random() * (window.innerWidth - 50)) + 'px';
+    trash.style.top = Math.floor(Math.random() * (window.innerHeight + 30)) + 'px';
 
-        function spawnTrashOnInterval() {
-            const numtrash = Math.floor(Math.random() * 4) + 1; // Random number between 1 and 4
-            const trash = document.createElement('div');
-            trash.classList.add('trash'); // Add the common 'trash' class
+    // Make trash disappear on click and immediately spawn a new one
+    trash.addEventListener('click', () => {
+        trash.remove(); // Remove the trash element from the DOM
+        currentTrashCount--; // Decrement trash count when removed
+        spawnTrashOnClick(); // Spawn new trash when clicked
+        increaseOpacity();
+    });
+}
 
-            // Randomize which trash image to use
-            switch (numtrash) {
-                case 1:
-                    trash.style.backgroundImage = "url('trash1.png')";
-                    break;
-                case 2:
-                    trash.style.backgroundImage = "url('trash2.png')";
-                    trash.style.backgroundSize = contain;
-                    break;
-                case 3:
-                    trash.style.backgroundImage = "url('trash3.png')";
-                    break;
-                case 4:
-                    trash.style.backgroundImage = "url('trash4.png')";
-                    break;
-            }
-            document.body.appendChild(trash);
+function spawnTrashOnInterval() {
+    if (currentTrashCount >= maxTrash) return; // Stop spawning if maxTrash is reached
+    const numtrash = Math.floor(Math.random() * 4) + 1; // Random number between 1 and 4
+    const trash = document.createElement('div');
+    trash.classList.add('trash'); // Add the common 'trash' class
 
-            // Set random positions for the trash
-            trash.style.left = `${Math.floor(Math.random() * (window.innerWidth - 50))}px`;
-            trash.style.top = `${Math.floor(Math.random() * (window.innerHeight - 50))}px`;
+    // Randomize which trash image to use
+    switch (numtrash) {
+        case 1:
+            trash.style.backgroundImage = "url('trash1.png')";
+            break;
+        case 2:
+            trash.style.backgroundImage = "url('trash2.png')";
+            break;
+        case 3:
+            trash.style.backgroundImage = "url('trash3.png')";
+            break;
+        case 4:
+            trash.style.backgroundImage = "url('trash4.png')";
+            break;
+    }
+    document.body.appendChild(trash);
+    currentTrashCount++; // Increment trash count
 
-            // Make trash disappear on click and immediately spawn a new one
-            trash.addEventListener('click', () => {
-                trash.classList.add('disappear');
-            });
-        }
+    // Set random positions for the trash
+    trash.style.left = Math.floor(Math.random() * (window.innerWidth - 50)) + 'px';
+    trash.style.top = Math.floor(Math.random() * (window.innerHeight + 30)) + 'px';
 
-       
-        setInterval(() => {
-            spawnTrashOnInterval();
-        }, 3000);
+    // Make trash disappear on click and remove from the count
+    trash.addEventListener('click', () => {
+        trash.remove(); // Remove the trash element from the DOM
+        currentTrashCount--; // Decrement trash 
+        increaseOpacity();
+    });
+}
+
+setInterval(() => {
+    spawnTrashOnInterval();
+}, 2000); // Spawns new trash every 3 seconds
 
 // Setup animation listeners on page load
-window.onload = function() {
+window.onload = function() {    
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
-    document.getElementById("foodCounter").innerText = 0;
+    document.getElementById("foodCounter").innerText = foodCounter;
     spawnTrashOnClick();
     img.style.opacity = opacityValue.toFixed(1);
 };

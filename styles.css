@@ -246,7 +246,7 @@ a:before {
     aspect-ratio: 1 / 1;
     top: 3%;
     right: 2%;
-    background-color: #f59e3b;
+    background-color: #ed8f0c;
     z-index: 999;
     padding: 10px;
     border-radius: 15px;
@@ -289,4 +289,57 @@ a:before {
     margin-left: 20px;
     width: 7%;
     z-index: 100;
+}
+
+.message {
+    position: absolute;
+    box-sizing: border-box;
+    padding: 0.5rem 1rem;
+    margin: 1rem;
+    background: rgba(173, 221, 255, 0.9); /* Slightly transparent background */
+    border-radius: 1.125rem 1.125rem 1.125rem 0;
+    min-height: 2.25rem;
+    width: fit-content;
+    max-width: 66%;
+    float: left;
+    left: 50px;
+    bottom: 20px;
+    box-shadow: 
+        0 0 2rem rgba(0, 0, 0, 0.075),
+        0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
+}
+#hintButton {
+    position: absolute;
+    background-color: #71c6ff;
+    color: black;
+    border: none;
+    border-radius: 50%;
+    padding: 10px 15px;
+    font-size: 18px;
+    cursor: pointer;
+    outline: none;
+    float: left;
+    bottom: 20px;
+    left: 20px;
+}
+.gear {
+    height: 50px;
+    right: 20px;
+    bottom: 20px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1000;
+}
+.settings {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the panel */
+    display: none;
+    z-index: 1000; /* Higher than overlay */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a shadow to the settings panel */
 }

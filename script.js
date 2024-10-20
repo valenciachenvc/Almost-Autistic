@@ -191,15 +191,113 @@ function spawnTrashOnInterval() {
     });
 }
 
-setInterval(() => {
-    spawnTrashOnInterval();
-}, 2000); // Spawns new trash every 3 seconds
 
-// Setup animation listeners on page load
 window.onload = function() {    
     setupAnimationListeners("container1");
     setupAnimationListeners("container2");
     document.getElementById("foodCounter").innerText = foodCounter;
     spawnTrashOnClick();
     img.style.opacity = opacityValue.toFixed(1);
+};
+
+document.getElementById('hintButton').addEventListener('click', function() {
+    const hintBox = document.getElementById('hintBox');
+    hintBox.style.display = hintBox.style.display === 'none' ? 'block' : 'none';
+    });
+
+function openSetting(){
+    const settingPanel = document.getElementById('settingpanel');
+    const overlay = document.getElementById('overlay');
+    const bg = document.getElementById('bg-img');
+
+    if (settingPanel.style.display === 'none' || settingPanel.style.display === '') {
+        settingPanel.style.display = 'block';
+    } else {
+        settingPanel.style.display = 'none';
+    }
+};
+
+function saveSettings() {
+    const trashEnabled = document.getElementById('trashToggle').checked;
+    const fishAmount = document.getElementById('fishAmount').value;
+    const bgVolume = document.getElementById('bgVolume').value;
+    const sfxVolume = document.getElementById('sfxVolume').value;
+
+    localStorage.setItem('fishAmount', fishAmount);
+    localStorage.setItem('trashEnabled', trashEnabled);
+
+    updateFishAmount(fishAmount);
+    alert('Settings saved!');
+    updateFishAmount(fishAmount);
+
+    if (trashEnabled) {
+        startTrashSpawning();
+    } else {
+        stopTrashSpawning();
+    }
+}
+
+function loadSettings() {
+    const fishAmount = localStorage.getItem('fishAmount') || 8;
+    const trashEnabled = localStorage.getItem('trashEnabled') === 'true';
+
+    document.getElementById('fishAmount').value = fishAmount;
+    document.getElementById('trashToggle').checked = trashEnabled;
+
+    updateFishAmount(fishAmount);
+
+    if (trashEnabled) {
+        startTrashSpawning();
+    } else {
+        stopTrashSpawning();
+    }
+}
+function updateFishAmount(amount) {
+    const container1 = document.getElementById("container1");
+    const container2 = document.getElementById("container2");
+
+    // Clear existing fish
+    container1.innerHTML = '';
+    container2.innerHTML = '';
+
+    // Create new fish based on the specified amount
+    for (let i = 1; i <= amount; i+=2) {
+        const fish = document.createElement('img');
+        fish.src = 'fish' + i + '.png';
+        fish.id = 'fish' + i;
+        fish.classList.add('fish');
+        container1.appendChild(fish);
+
+
+        const reversedFish = document.createElement('img');
+        reversedFish.src = 'reversedfish' + i + '.png';
+        reversedFish.id = 'reversedfish' + i;
+        reversedFish.className = 'fish';
+        container2.appendChild(reversedFish);
+
+    }
+    setupAnimationListeners("container1");
+    setupAnimationListeners("container2");
+}
+
+
+function startTrashSpawning() {
+    // Start the trash spawning interval
+    trashInterval = setInterval(spawnTrashOnInterval, 3000);
+}
+
+function stopTrashSpawning() {
+    // Stop the trash spawning interval
+    clearInterval(trashInterval);
+}
+
+// Initialize a variable to hold the trash spawning interval
+let trashInterval;
+window.onload = function() {
+        setupAnimationListeners("container1");
+        setupAnimationListeners("container2");
+        document.getElementById("foodCounter").innerText = foodCounter;
+        spawnTrashOnClick();
+        img.style.opacity = opacityValue.toFixed(1);
+        loadSettings();
 };

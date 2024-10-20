@@ -220,8 +220,6 @@ function openSetting(){
 function saveSettings() {
     const trashEnabled = document.getElementById('trashToggle').checked;
     const fishAmount = document.getElementById('fishAmount').value;
-    const bgVolume = document.getElementById('bgVolume').value;
-    const sfxVolume = document.getElementById('sfxVolume').value;
 
     localStorage.setItem('fishAmount', fishAmount);
     localStorage.setItem('trashEnabled', trashEnabled);

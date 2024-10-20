@@ -191,15 +191,6 @@ function spawnTrashOnInterval() {
     });
 }
 
-
-window.onload = function() {    
-    setupAnimationListeners("container1");
-    setupAnimationListeners("container2");
-    document.getElementById("foodCounter").innerText = foodCounter;
-    spawnTrashOnClick();
-    img.style.opacity = opacityValue.toFixed(1);
-};
-
 document.getElementById('hintButton').addEventListener('click', function() {
     const hintBox = document.getElementById('hintBox');
     hintBox.style.display = hintBox.style.display === 'none' ? 'block' : 'none';

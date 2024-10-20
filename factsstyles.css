@@ -189,7 +189,7 @@ a:before {
     transform: scaleX(1);
 }
 
-.logo {
+ .logo {
     position: absolute;
     margin-left: 20px;
     width: 7%;

@@ -1,4 +1,4 @@
-let foodCounter = parseInt(localStorage.getItem('foodCounter'));
+let foodCounter = parseInt(localStorage.getItem('foodCounter')) || 10;
 let opacityValue = 0.2; // Starting opacity
 let score = 0;
 document.getElementById('foodCounter').innerText = foodCounter;
